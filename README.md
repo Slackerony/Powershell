@@ -1,2 +1,3 @@
 # Powershell
-Various PowerShell functions and scripts 
+
+Repository for storing scripts and configuration files
