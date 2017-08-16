@@ -6,8 +6,17 @@ function Get-AllGitStatus
     )
 
     Get-ChildItem -Path $Path -Directory | ForEach-Object {
-        Get-GitStatus -gitDir $_
+        Set-Location -Path $_.FullName
+        $status = Get-GitStatus
+
+        [PSCustomObject]@{
+            Name        = $_
+            Untracked   = $status.HasUntracked
+            UnCommitted = $status.HasIndex
+            UnPushed    = ($status.AheadBy -gt 0)
+        }
     }
 
+    Set-Location -Path $Path
 
 }
