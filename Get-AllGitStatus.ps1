@@ -11,6 +11,7 @@ function Get-AllGitStatus
 
         [PSCustomObject]@{
             Name        = $_
+            HasWorking  = $status.HasWorking
             Untracked   = $status.HasUntracked
             UnCommitted = $status.HasIndex
             UnPushed    = ($status.AheadBy -gt 0)
